@@ -58,5 +58,6 @@
     "edu.wpi.first.math.**.struct.*",
   ],
   "chat.disableAIFeatures": true,
-  "extensions.ignoreRecommendations": true
+  "extensions.ignoreRecommendations": true,
+  "java.dependency.enableDependencyCheckup": false
 }
