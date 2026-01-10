@@ -5,14 +5,20 @@ import org.wildstang.framework.core.Core;
 import org.wildstang.sample.robot.WsSubsystems;
 import org.wildstang.sample.subsystems.swerve.SwerveDrive;
 
-public class ObjectOnStep extends AutoStep{
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+
+public class SetAlignStep extends AutoStep{
 
     private SwerveDrive swerve;
-    private boolean isOn;
+    private Pose2d odoPose;
+    private double heading;
 
-    public ObjectOnStep(boolean isOn){
-        this.isOn = isOn;
+    public SetAlignStep(double x, double y, double heading){
+        odoPose = new Pose2d(x,y, Rotation2d.fromDegrees(360 - heading));
+        this.heading = heading;
     }
+
     @Override
     public void initialize() {
         swerve = (SwerveDrive) Core.getSubsystemManager().getSubsystem(WsSubsystems.SWERVE_DRIVE);
@@ -20,13 +26,14 @@ public class ObjectOnStep extends AutoStep{
 
     @Override
     public void update() {
-        swerve.setAutoObject(isOn);
+        swerve.setAutoValues(0,0,0, 0, odoPose);
+        swerve.setAutoHeading(heading);
         setFinished();
     }
 
     @Override
     public String toString() {
-        return "Object On Step";
+        return "Set Align Step";
     }
     
 }

@@ -1,4 +1,4 @@
-package org.wildstang.framework.auto.steps;
+package org.wildstang.sample.auto.Steps;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -21,7 +21,7 @@ import choreo.trajectory.Trajectory;
 
 import com.google.gson.Gson;
 
-public class SwervePathFollowerStep extends AutoStep {
+public class SwerveAutoStep extends AutoStep {
 
     private static final double mToIn = 39.3701;
     private SwerveDriveTemplate m_drive;
@@ -39,7 +39,7 @@ public class SwervePathFollowerStep extends AutoStep {
      * @param drive the swerveDrive subsystem
      * @param isBlue whether the robot is on the blue alliance
      */
-    public SwervePathFollowerStep(String pathData, SwerveDriveTemplate drive) {
+    public SwerveAutoStep(String pathData, SwerveDriveTemplate drive) {
         // this.pathtraj = getTraj(pathData);
         // m_drive = drive;
         // timer = new Timer();
@@ -57,7 +57,7 @@ public class SwervePathFollowerStep extends AutoStep {
      * @param isBlue whether the robot is on the blue alliance
      * @param split the index of the path split
      */
-    public SwervePathFollowerStep(String pathData, SwerveDriveTemplate drive, int split) {
+    public SwerveAutoStep(String pathData, SwerveDriveTemplate drive, int split) {
         var traj = Choreo.loadTrajectory(pathData).get().getSplit(split).get();
         this.pathtraj = (Trajectory<SwerveSample>)traj;
         //this.pathtraj = getTraj(pathData).getSplit(split).get();
@@ -75,7 +75,7 @@ public class SwervePathFollowerStep extends AutoStep {
     @Override
     public void update() {
         if (timer.get() >= pathtraj.getFinalSample(false).get().t) {
-            m_drive.setAutoValues(0,0,0.0,0.0, pathtraj.getFinalPose(false).get());
+            m_drive.setAutoValues(0,0,0,0,pathtraj.getFinalPose(false).get());
             SmartDashboard.putNumber("auto final time", timer.get());
             setFinished();
         } else {
@@ -83,14 +83,20 @@ public class SwervePathFollowerStep extends AutoStep {
             
             fieldAutoPose = sample.getPose();
 
-            m_drive.setAutoHeading(getHeading());
-            m_drive.setAutoValues(-1 * sample.vy * mToIn, sample.vx * mToIn,0,0, fieldAutoPose);
+            if (fieldAutoPose.getTranslation().getDistance(pathtraj.getFinalPose(false)
+                .get().getTranslation()) < 1.5){
+                    m_drive.setAutoValues(0.0, 0.0,0,0, pathtraj.getFinalPose(false).get());
+                    m_drive.setAutoHeading(getHeading());
+            } else {
+                m_drive.setAutoHeading(getHeading());
+                m_drive.setAutoValues(-1 * sample.vy * mToIn, sample.vx * mToIn,0,0, fieldAutoPose);
+            }
         }
     }
 
     @Override
     public String toString() {
-        return "Swerve Path Follower";
+        return "Swerve Auto Step";
     }
 
     public double getHeading(){
