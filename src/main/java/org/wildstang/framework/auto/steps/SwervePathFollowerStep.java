@@ -37,7 +37,6 @@ public class SwervePathFollowerStep extends AutoStep {
      * finishes after all values have been read to robot
      * @param pathData double[][] that contains path, should be from \frc\paths
      * @param drive the swerveDrive subsystem
-     * @param isBlue whether the robot is on the blue alliance
      */
     public SwervePathFollowerStep(String pathData, SwerveDriveTemplate drive) {
         // this.pathtraj = getTraj(pathData);
@@ -54,7 +53,6 @@ public class SwervePathFollowerStep extends AutoStep {
      * finishes after all values have been read to robot
      * @param pathData double[][] that contains path, should be from \frc\paths
      * @param drive the swerveDrive subsystem
-     * @param isBlue whether the robot is on the blue alliance
      * @param split the index of the path split
      */
     public SwervePathFollowerStep(String pathData, SwerveDriveTemplate drive, int split) {

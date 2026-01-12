@@ -46,8 +46,6 @@ public class WsTalon extends WsMotorController {
      * @param name Descriptive name of the controller.
      * @param channel Motor controller CAN constant.
      * @param p_default Default output value.
-     * @param controller Enumeration representing type of controller.
-     * @param invert Invert the motor's direction.
      */
     public WsTalon(String name, int channel, String CANBUS, double p_default) {
         super(name, p_default);
@@ -59,7 +57,7 @@ public class WsTalon extends WsMotorController {
     /**
      * Add a follower motor to the current motor.
      * @param canConstant CAN constant of the new follower motor.
-     * @param controller Enumeration representing type of controller.
+     * @param CANBUS Attached CAN bus name.
      * @param oppose True if the follow should oppose the direction of this motor.
      */
     public void addFollower(int canConstant, String CANBUS, boolean oppose) {
@@ -170,7 +168,6 @@ public class WsTalon extends WsMotorController {
      * @param P the P value
      * @param I the I value
      * @param D the D value
-     * @param FF the feed forward constant
      */
     public void initClosedLoop(double P, double I, double D){
         Slot0Configs slot0 = new Slot0Configs();
