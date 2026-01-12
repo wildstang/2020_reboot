@@ -15,9 +15,7 @@ import com.ctre.phoenix6.controls.PositionDutyCycle;
 import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
-import com.revrobotics.spark.ClosedLoopSlot;
-import com.revrobotics.spark.SparkBase.ControlType;
-import com.revrobotics.spark.config.ClosedLoopConfig.FeedbackSensor;
+import com.ctre.phoenix6.signals.MotorAlignmentValue;
 
 
 /**
@@ -68,7 +66,8 @@ public class WsTalon extends WsMotorController {
         follower = new TalonFX(canConstant, CANBUS);
         followerApply = follower.getConfigurator();
         followerExists = true;
-        follow = new Follower(motor.getDeviceID(), oppose);
+        MotorAlignmentValue alignment = oppose ? MotorAlignmentValue.Opposed : MotorAlignmentValue.Aligned;
+        follow = new Follower(motor.getDeviceID(), alignment);
     }
 
 
