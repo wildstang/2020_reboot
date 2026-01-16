@@ -23,7 +23,7 @@ public enum WsOutputs implements Outputs {
     // Other Motors
     // ---------------------------------
     TURRET_FLYWHEEL_LEFT("Turret Flywheel Left", new WsSparkConfig(CANConstants.TURRET_FLYWHEEL_LEFT, WsMotorControllers.SPARK_MAX_BRUSHED)),
-    TURRET_FLYWHEEL_RIGHT("Turret Flywheel Right", new WsSparkConfig(CANConstants.TURRET_FLYWHEEL_RIGHT, WsMotorControllers.SPARK_MAX_BRUSHED, true)),
+    TURRET_FLYWHEEL_RIGHT("Turret Flywheel Right", new WsSparkConfig(CANConstants.TURRET_FLYWHEEL_RIGHT, WsMotorControllers.SPARK_MAX_BRUSHED)),
     TURRET_HOOD("Turret Hood", new WsSparkConfig(CANConstants.TURRET_HOOD, WsMotorControllers.SPARK_MAX_BRUSHED)),
     TURRET_KICKER("Turret Kicker", new WsSparkConfig(CANConstants.TURRET_KICKER, WsMotorControllers.SPARK_MAX_BRUSHED)),
     TURRET_ANGLE("Turret Angle", new WsSparkConfig(CANConstants.TURRET_ANGLE, WsMotorControllers.SPARK_MAX_BRUSHED)),

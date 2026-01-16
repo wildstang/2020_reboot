@@ -25,9 +25,9 @@ public final class CANConstants {
     public static final int CLIMB_LEFT            =  7; // removed
     public static final int CLIMB_RIGHT           =  8; // removed
     public static final int TURRET_HOOD           =  9;
-    public static final int TURRET_ANGLE          = 10;
-    public static final int INTAKE                = 11;
+    public static final int TURRET_ANGLE          = 11;
+    public static final int INTAKE                = 10;
     public static final int HOPPER_1              = 12;
-    public static final int HOPPER_2_3            = 13;
-    public static final int TURRET_KICKER         = 14;
+    public static final int HOPPER_2_3            = 14;
+    public static final int TURRET_KICKER         = 13;
 }
